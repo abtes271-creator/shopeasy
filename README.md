@@ -2,7 +2,7 @@
 
 A full-featured e-commerce web app built with React, featuring product browsing, search, filtering, a persistent shopping cart, and a complete checkout flow.
 
-**🔗 Live Demo:** [your-vercel-link-here]
+**🔗 Live Demo:** https://shopeasy-topaz-eight.vercel.app/products
 
 ## Features
 
@@ -45,4 +45,4 @@ npm start
 ## Built By
 
 **Abenet Tesfaye Haile** — Software Engineer at Awash Bank
-[LinkedIn] · [GitHub] · [Portfolio]
+[LinkedIn] https://www.linkedin.com/in/abenet-tesfaye-539907407/· [GitHub] · https://github.com/abtes271-creator
