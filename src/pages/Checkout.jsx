@@ -7,9 +7,8 @@ function Checkout() {
   const { cartItems, cartTotal, clearCart } = useCart();
   const navigate = useNavigate();
   const width = useWindowWidth();
-const isMobile = width < 768;
+  const isMobile = width < 768;
 
-  // Form state — one object holding all fields
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -18,65 +17,45 @@ const isMobile = width < 768;
     phone: '',
   });
 
-  // Track validation errors
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
-  // Redirect if cart is empty (e.g. user refreshed this page directly)
-  if (cartItems.length === 0) {
-    navigate('/cart');
-    return null;
-  }
-
-  // Generic input handler — works for any field
   function handleChange(e) {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
-
-    // Clear error for this field as soon as user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: null }));
     }
   }
 
-  // Validate all fields, return true if everything is okay
   function validate() {
     const newErrors = {};
-
     if (!form.fullName.trim()) newErrors.fullName = 'Full name is required';
-
     if (!form.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(form.email)) {
       newErrors.email = 'Enter a valid email';
     }
-
     if (!form.address.trim()) newErrors.address = 'Address is required';
     if (!form.city.trim()) newErrors.city = 'City is required';
-
     if (!form.phone.trim()) {
       newErrors.phone = 'Phone number is required';
     } else if (!/^\d{6,15}$/.test(form.phone.replace(/\s/g, ''))) {
       newErrors.phone = 'Enter a valid phone number';
     }
-
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // true if no errors
+    return Object.keys(newErrors).length === 0;
   }
 
   function handlePlaceOrder() {
-    if (!validate()) return; // stop if validation fails
-
+    if (!validate()) return;
     setSubmitting(true);
-
-    // Simulate a network request (in a real app this would be an API call)
     setTimeout(() => {
       clearCart();
       navigate('/order-success', { state: { orderTotal: cartTotal, customerName: form.fullName } });
     }, 1200);
   }
 
-  // Reusable input field renderer
   function renderField(name, label, placeholder, type = 'text') {
     return (
       <div style={{ marginBottom: '16px' }}>
@@ -109,15 +88,23 @@ const isMobile = width < 768;
     );
   }
 
+  // Empty cart guard — rendered as JSX instead of an early return with side effects
+  if (cartItems.length === 0) {
+    navigate('/cart', { replace: true });
+    return null;
+  }
+
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px' }}>
       <h1 style={{ fontSize: '26px', fontWeight: '800', marginBottom: '28px' }}>
         Checkout
       </h1>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '32px' }}>
-
-        {/* Shipping form */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: isMobile ? '1fr' : '1fr 320px',
+        gap: '32px'
+      }}>
         <div style={{
           background: '#fff',
           borderRadius: '14px',
@@ -138,7 +125,6 @@ const isMobile = width < 768;
           </div>
         </div>
 
-        {/* Order summary */}
         <div style={{
           background: '#fff',
           borderRadius: '14px',
@@ -152,7 +138,6 @@ const isMobile = width < 768;
             Order Summary
           </h3>
 
-          {/* Mini list of items */}
           <div style={{ maxHeight: '200px', overflowY: 'auto', marginBottom: '16px' }}>
             {cartItems.map(item => (
               <div key={item.id} style={{
