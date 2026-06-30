@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function OrderSuccess() {
   const location = useLocation();

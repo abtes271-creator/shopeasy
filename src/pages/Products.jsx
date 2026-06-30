@@ -21,7 +21,7 @@ function Products() {
   useEffect(() => {
     const cat = searchParams.get('category');
     if (cat) setActiveCategory(cat);
-  }, [searchParams]);
+  }, [searchParams, setActiveCategory]);
 
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 24px' }}>
@@ -121,7 +121,7 @@ function Products() {
       {loading && (
         <div style={{ textAlign: 'center', padding: '80px 0', color: '#888' }}>
           <p style={{ fontSize: '36px', marginBottom: '12px' }}>⏳</p>
-          <p fontSize="14px">Fetching products...</p>
+          <p>Fetching products...</p>
         </div>
       )}
 
