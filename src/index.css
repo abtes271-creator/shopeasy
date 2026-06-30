@@ -4,10 +4,37 @@
   box-sizing: border-box;
 }
 
+/* LIGHT THEME (default) */
+:root {
+  --bg-page: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-navbar: #1a1a2e;
+  --text-primary: #1a1a2e;
+  --text-secondary: #666666;
+  --text-muted: #888888;
+  --border-color: #f0f0f0;
+  --accent: #e94560;
+  --shadow: rgba(0, 0, 0, 0.06);
+}
+
+/* DARK THEME — activates when <html data-theme="dark"> */
+[data-theme='dark'] {
+  --bg-page: #121212;
+  --bg-card: #1e1e2e;
+  --bg-navbar: #0d0d17;
+  --text-primary: #f1f1f1;
+  --text-secondary: #b0b0b0;
+  --text-muted: #888888;
+  --border-color: #2e2e3e;
+  --accent: #ff6b81;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f8f9fa;
-  color: #1a1a2e;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
 }
 
 a {

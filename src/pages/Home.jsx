@@ -29,7 +29,7 @@ function Home() {
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero Section — stays dark in both themes, like the navbar */}
       <div
         style={{
           background:
@@ -101,8 +101,9 @@ function Home() {
             style={{
               padding: "10px 20px",
               borderRadius: "30px",
-              border: "1px solid #ddd",
-              background: "#fff",
+              border: "1px solid var(--border-color)",
+              background: "var(--bg-card)",
+              color: "var(--text-primary)",
               cursor: "pointer",
               transition: "0.2s",
             }}
@@ -111,8 +112,8 @@ function Home() {
               e.target.style.color = "#fff";
             }}
             onMouseOut={(e) => {
-              e.target.style.background = "#fff";
-              e.target.style.color = "#333";
+              e.target.style.background = "var(--bg-card)";
+              e.target.style.color = "var(--text-primary)";
             }}
           >
             {cat.name}
@@ -133,13 +134,14 @@ function Home() {
             fontSize: "28px",
             fontWeight: "700",
             marginBottom: "24px",
+            color: "var(--text-primary)",
           }}
         >
           Featured Products
         </h2>
 
         {loading ? (
-          <div style={{ textAlign: "center", padding: "60px" }}>
+          <div style={{ textAlign: "center", padding: "60px", color: "var(--text-muted)" }}>
             <p style={{ fontSize: "30px" }}>⏳</p>
             <p>Loading products...</p>
           </div>
@@ -163,9 +165,9 @@ function Home() {
             onClick={() => navigate("/products")}
             style={{
               padding: "12px 32px",
-              border: "2px solid #1a1a2e",
-              background: "#fff",
-              color: "#1a1a2e",
+              border: "2px solid var(--text-primary)",
+              background: "var(--bg-card)",
+              color: "var(--text-primary)",
               borderRadius: "30px",
               cursor: "pointer",
               fontWeight: "600",
