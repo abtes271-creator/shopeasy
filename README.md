@@ -35,8 +35,7 @@ A full-featured e-commerce web app built with React, featuring product browsing,
 
 ## Run Locally
 
-\`\`\`bash
-git clone https://github.com/YOUR_USERNAME/shopeasy.git
+
 cd shopeasy
 npm install
 npm start
